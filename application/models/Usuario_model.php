@@ -27,7 +27,7 @@ class Usuario_model extends CI_Model{
         $this->db->close();
     }
     function find_by_id($usuario_id){
-        $query = $this->db->query("select usuario.usuario_id,usuario.nombre,usuario.apepat,usuario.apemat,ciudad.nombre as ciudad,usuario.user,usuario.pass,usuario.estado,rol.tipo,usuario.rol_id from Usuario,Ciudad,Rol where Usuario.ciudad_id=Ciudad.ciudad_id and Usuario.rol_id=Rol.rol_id and Usuario.usuario_id='".$usuario_id."'");
+        $query = $this->db->query("select usuario.usuario_id,usuario.nombre,usuario.apepat,usuario.apemat,ciudad.nombre as ciudad,usuario.user,usuario.pass,usuario.estado,rol.tipo,usuario.rol_id,usuario.ciudad_id from Usuario,Ciudad,Rol where Usuario.ciudad_id=Ciudad.ciudad_id and Usuario.rol_id=Rol.rol_id and usuario.estado='activo' and Usuario.usuario_id='".$usuario_id."'");
         $result = $query->result_object();
         $this->db->close();
         return $result;

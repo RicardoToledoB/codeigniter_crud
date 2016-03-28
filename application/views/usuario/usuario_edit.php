@@ -7,7 +7,13 @@
         Ciudad:<select name="ciudad_id">
             <?php
             foreach ($ciudad as $ciudadlista) {
-                echo '<option values="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
+                if($row->ciudad_id==$ciudadlista->ciudad_id){
+                echo '<option selected value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
+                }else{
+                 echo '<option value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
+                                   
+                }
+                
             }
             ?>
         </select><br>
@@ -17,9 +23,9 @@
         <?php
            foreach ($rol as $rollista) {
               if ($row->rol_id == $rollista->rol_id) {
-                   echo '<option selected=selected values="' . $rollista->rol_id . '" >' . $rollista->tipo . '</option>';
+                   echo '<option selected value="' . $rollista->rol_id . '" >' . $rollista->tipo . '</option>';
               } else {
-                   echo '<option values="' . $rollista->rol_id . '">' . $rollista->tipo . '</option>';
+                   echo '<option value="' . $rollista->rol_id . '">' . $rollista->tipo . '</option>';
                }
             }
         ?>
@@ -34,25 +40,6 @@
         }
         echo form_dropdown('rol', $options, $row->rol_id);
         -->
-       
-        <!--  EJEMPLO CON USUARIO SELECCIONADO 
-        
-        
-        $dd_list = array(
-            '1' => 'Mr',
-            '2' => 'Mrs',
-            '3' => 'Miss',
-        );
-
-        $dd_name = "title";
-
-        echo form_dropdown($dd_name, $dd_list, '3');
-        
-        
-        -->
-
-
-
         <input type='submit' value='Editar'/>
 <?php } ?>
 </form>

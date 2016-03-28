@@ -42,8 +42,8 @@ class Usuario extends CI_Controller {
     }
     public function edit($usuario_id) {
         $data['usuario']=$this->Usuario_model->find_by_id($usuario_id);
-        $data['rol']=$this->Rol_model->list_roles();
-        $data['ciudad']=$this->Ciudad_model->list_ciudades();
+        $data['rol']=$this->Rol_model->list_all();
+        $data['ciudad']=$this->Ciudad_model->list_all();
         $this->load->view("usuario/usuario_edit",$data);
     }
     public function delete($usuario_id) {
