@@ -6,6 +6,10 @@ DETALLE USUARIO
     <th>NOMBRE</th>
     <th>APEPAT</th>
     <th>APEMAT</th>
+    <th>CIUDAD</th>
+    <th>USER</th>
+    <th>ESTADO</th>
+    <th>ROL</th>
    
 </thead>
 <tbody>
@@ -16,6 +20,10 @@ DETALLE USUARIO
             <td><?php echo $row->nombre; ?> </td>
             <td><?php echo $row->apepat; ?> </td>
             <td><?php echo $row->apemat; ?> </td>
+            <td><?php echo $row->ciudad; ?> </td>
+            <td><?php echo $row->user; ?> </td>
+            <td><?php echo $row->estado; ?> </td>
+            <td><?php echo $row->tipo; ?> </td>
             
         </tr>
         
