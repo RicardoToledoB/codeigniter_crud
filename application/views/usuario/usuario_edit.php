@@ -1,3 +1,7 @@
+<?=anchor(base_url().'index.php/login/log_out', 'Cerrar sesión')?>
+<br>
+<h1> Bienvenido/a <?php echo $nombre ." UID:" . $id ?> </h1>
+
 <form method="post" action="../update" >
     <?php foreach ($usuario as $row) { ?>
         <input type="text" hidden="true" name="usuario_id" value=<?php echo $row->usuario_id; ?>><br>
@@ -7,28 +11,26 @@
         Ciudad:<select name="ciudad_id">
             <?php
             foreach ($ciudad as $ciudadlista) {
-                if($row->ciudad_id==$ciudadlista->ciudad_id){
-                echo '<option selected value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
-                }else{
-                 echo '<option value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
-                                   
+                if($row->ciudad_id == $ciudadlista->ciudad_id) {
+                    echo '<option selected value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
+                } else {
+                    echo '<option value="' . $ciudadlista->ciudad_id . '">' . $ciudadlista->nombre . '</option>';
                 }
-                
             }
             ?>
         </select><br>
         User:<input type="text" name="user" value=<?php echo $row->user; ?>><br>
         Pass:<input type="password" name="pass" value=<?php echo $row->pass; ?>><br>
         Rol_id:<select name="rol_id">
-        <?php
-           foreach ($rol as $rollista) {
-              if ($row->rol_id == $rollista->rol_id) {
-                   echo '<option selected value="' . $rollista->rol_id . '" >' . $rollista->tipo . '</option>';
-              } else {
-                   echo '<option value="' . $rollista->rol_id . '">' . $rollista->tipo . '</option>';
-               }
+            <?php
+            foreach ($rol as $rollista) {
+                if ($row->rol_id == $rollista->rol_id) {
+                    echo '<option selected value="' . $rollista->rol_id . '" >' . $rollista->tipo . '</option>';
+                } else {
+                    echo '<option value="' . $rollista->rol_id . '">' . $rollista->tipo . '</option>';
+                }
             }
-        ?>
+            ?>
         </select><br>
 
         <!-- USUARO DE FORM_HELPER form_dorpdown :D-->
@@ -41,5 +43,5 @@
         echo form_dropdown('rol', $options, $row->rol_id);
         -->
         <input type='submit' value='Editar'/>
-<?php } ?>
+    <?php } ?>
 </form>
