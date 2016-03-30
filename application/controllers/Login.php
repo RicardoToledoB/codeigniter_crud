@@ -26,6 +26,7 @@ class Login extends CI_Controller {
                 $usuario_data = array(
                     'id' => $login->usuario_id,
                     'nombre' => $login->user,
+                    'tipo' => $login->tipo,
                     'logueado' => TRUE
                 );
             }

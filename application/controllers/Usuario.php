@@ -11,7 +11,11 @@ class Usuario extends CI_Controller {
         $this->load->model("Rol_model");
         $this->load->model("Ciudad_model");
         if ($this->session->userdata('logueado')) {
-            
+            if($this->session->userdata('tipo')=='administrador'){
+                
+            }else{
+                redirect(base_url().'index.php/error403');
+            }
         } else {
             redirect(base_url() . 'index.php/login');
         }
@@ -20,6 +24,7 @@ class Usuario extends CI_Controller {
     function index() {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data["usuario"] = $this->Usuario_model->list_all();
         $this->load->view("usuario/usuario_index", $data);
     }
@@ -27,6 +32,7 @@ class Usuario extends CI_Controller {
     function nuevo() {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['rol'] = $this->Rol_model->list_all();
         $data['ciudad'] = $this->Ciudad_model->list_all();
         $this->load->view("usuario/usuario_nuevo", $data);
@@ -60,6 +66,7 @@ class Usuario extends CI_Controller {
     public function edit($usuario_id) {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['usuario'] = $this->Usuario_model->find_by_id($usuario_id);
         $data['rol'] = $this->Rol_model->list_all();
         $data['ciudad'] = $this->Ciudad_model->list_all();
@@ -74,6 +81,7 @@ class Usuario extends CI_Controller {
     public function view($usuario_id) {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['usuario'] = $this->Usuario_model->find_by_id($usuario_id);
         $this->load->view("usuario/usuario_view", $data);
     }

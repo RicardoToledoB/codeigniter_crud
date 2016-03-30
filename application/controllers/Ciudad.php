@@ -7,16 +7,27 @@ class Ciudad extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('Ciudad_model');
         $this->load->library('session');
-        if ($this->session->userdata('logueado')) {
+        /*if ($this->session->userdata('logueado')) {
             
         } else {
             redirect(base_url() . 'index.php/login');
+        }*/
+         if ($this->session->userdata('logueado')) {
+            if($this->session->userdata('tipo')=='administrador'){
+                
+            }else{
+                redirect(base_url().'index.php/error403');
+            }
+        } else {
+            redirect(base_url() . 'index.php/login');
         }
+        
     }
 
     public function index() {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['ciudad'] = $this->Ciudad_model->list_all();
         $this->load->view('ciudad/ciudad_index', $data);
     }
@@ -24,6 +35,7 @@ class Ciudad extends CI_Controller {
     public function nuevo() {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $this->load->view('ciudad/ciudad_nuevo', $data);
     }
 
@@ -48,6 +60,7 @@ class Ciudad extends CI_Controller {
     public function edit($ciudad_id) {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['ciudad'] = $this->Ciudad_model->find_by_id($ciudad_id);
         $this->load->view("ciudad/ciudad_edit", $data);
     }
@@ -55,6 +68,7 @@ class Ciudad extends CI_Controller {
     public function view($ciudad_id) {
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
+        $data['tipo']=$this->session->userdata('tipo');
         $data['ciudad'] = $this->Ciudad_model->find_by_id($ciudad_id);
         $this->load->view("ciudad/ciudad_view", $data);
     }
