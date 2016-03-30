@@ -30,7 +30,7 @@ class Login extends CI_Controller {
                 );
             }
             $this->session->set_userdata($usuario_data);
-            redirect(base_url() . 'index.php/usuario');
+            redirect(base_url() . 'index.php/home');
         } else {
             echo $data;
             redirect('login');
